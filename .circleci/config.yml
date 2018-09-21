@@ -20,9 +20,8 @@ jobs:
       - run:
           name: Creating Dummy Artifacts
           command: |
-            echo "my artifact file" > .dist/artifact-1;
             mkdir .dist/artifacts;
-            echo "my artifact files in a dir" > .dist/artifacts/artifact-2;
+            echo "my artifact file" > .dist/artifact-1;
 
       - store_artifacts:
           path: .dist/artifact-1
