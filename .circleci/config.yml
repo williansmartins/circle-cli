@@ -40,7 +40,7 @@ jobs:
       - run:
           name: LS
           command: |
-            tree -d
+            ls -lia /
       - run:
           name: LS
           command: |
