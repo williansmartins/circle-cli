@@ -17,73 +17,26 @@ jobs:
     working_directory: ~/projeto
 
     steps:
-      - checkout
+      - run:
+          name: Creating Dummy Artifacts
+          command: |
+            echo "my artifact file" > /tmp/artifact-1;
+            mkdir /tmp/artifacts;
+            echo "my artifact files in a dir" > /tmp/artifacts/artifact-2;
 
-      - run:
-          name: PWD 1
-          command: pwd
-
-      - run:
-          name: LS 1
-          command: ls -lia
-
-      # Restore local dependencies from cache
-      - restore_cache:
-          keys:
-          - v1-dependencies-{{ checksum "app/package.json" }}
-          - v1-dependencies-
-      # Install project dependencies
-      - run:
-          name: Install local dependencies
-          command: cd app && npm install
-      - run:
-          name: install angular CLI
-          command: sudo npm install -g @angular/cli
-
-      # Cache local dependencies if they don't exist
-      - save_cache:
-          key: v1-dependencies-{{ checksum "app/package.json" }}
-          paths:
-              - node_modules 
-      - run:
-          name: PWD 2
-          command: pwd
-
-      - run:
-          name: LS 2
-          command: ls -lia
-
-      - run:
-          name: build angular
-          command: cd app && ng build
-
-      - run:
-          name: LS 3
-          command: ls -lia
-
-      - run:
-          name: PWD 3
-          command: pwd
-              
       - store_artifacts:
-          path: app/dist
-          destination: dist   
+          path: /tmp/artifact-1
+          destination: artifact-file
 
-      # - add_ssh_keys:
-      #   fingerprints:
-      #     -"21:26:79:4b:de:ef:cb:c1:e4:d3:0b:da:55:61:69:56"
-        
-      # - run:
-      #     name: Deploy Over SSH
-      #     command: |
-      #       scp app/dist/primeiro-projeto $SSH_USER@$SSH_HOST:~/
+      - store_artifacts:
+          path: /tmp/artifacts
 
   deploy:
     machine:
       enabled: true
     steps:
       - run:
-          name: PWD 4
+          name: PWD
           command: |
             pwd            
       - run:
@@ -91,23 +44,17 @@ jobs:
           command: |
             echo ${CIRCLE_ARTIFACTS}
       - run:
-          name: LS 4
+          name: LS
           command: |
-            ls -lia /home/circleci   
+            ls -lia /
       - run:
-          name: LS 4
+          name: LS
           command: |
-            ls -lia /home/ubuntu
-
+            ls -lia /home
       - run:
-          name: Deploy Over SSH
+          name: LS
           command: |
-            scp /home/circleci/.bashrc $SSH_USER@$SSH_HOST:~/dist
-
-      # - run:
-      #     name: Deploy Over SSH
-      #     command: |
-      #       scp /home/circleci/repo/README.md $SSH_USER@$SSH_HOST:~/
+            ls -lia /home/circleci         
 
 workflows:
   version: 2
