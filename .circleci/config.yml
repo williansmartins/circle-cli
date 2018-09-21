@@ -14,18 +14,22 @@ jobs:
       # documented at https://circleci.com/docs/2.0/circleci-images/
       # - image: circleci/mongo:3.4.4
 
-    working_directory: ~/project/app
+    working_directory: ~/project
 
     steps:
       - checkout
+
+      - run:
+          name: PWD 1
+          command: pwd
 
       - run:
           name: LS 1
           command: ls -lia
 
       - run:
-          name: PWD 1
-          command: pwd
+          name: CD app
+          command: cd app
 
       # Restore local dependencies from cache
       - restore_cache:
