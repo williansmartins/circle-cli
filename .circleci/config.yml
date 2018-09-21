@@ -17,8 +17,6 @@ jobs:
     working_directory: ~/projeto
 
     steps:
-      machine:
-        enabled: true
       - run:
           name: Creating Dummy Artifacts
           command: |
@@ -34,6 +32,8 @@ jobs:
           path: /tmp/artifacts
 
   deploy:
+    machine:
+      enabled: true
     steps:
       - run:
           name: PWD
