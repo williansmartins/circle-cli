@@ -21,6 +21,17 @@ jobs:
 
       # Log the current branch
       - run:
+          name: Creating Dummy Artifacts
+          command: |
+            echo "my artifact file" > /tmp/artifact-1;
+            mkdir /tmp/artifacts;
+            echo "my artifact files in a dir" > /tmp/artifacts/artifact-2;
+
+      - store_artifacts:
+          path: /tmp/artifact-1
+          destination: artifact-file
+
+      - run:
           name: Show current branch
           command: echo ${CIRCLE_BRANCH}
       - run:
@@ -30,7 +41,7 @@ jobs:
           name: PWD
           command: pwd
       - store_artifacts:
-          path: /home/circleci
+          path: /tmp/artifact-1
           destination: dist          
 
   deploy:
