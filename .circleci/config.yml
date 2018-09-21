@@ -31,7 +31,11 @@ jobs:
       - store_artifacts:
           path: /tmp/artifacts
 
-      - run: cat ~/.ssh/known_hosts
+      - persist_to_workspace:
+          root: /tmp/dir
+          paths:
+            - foo/bar
+            - baz
       # - run:
       #     name: Deploy Over SSH
       #     command: |
