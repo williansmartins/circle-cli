@@ -44,7 +44,7 @@ jobs:
 
       - run:
           name: build angular
-          command: ng build
+          command: cd app && ng build
 
       - run:
           name: LS 2
@@ -55,7 +55,7 @@ jobs:
           command: pwd
               
       - store_artifacts:
-          path: /dist
+          path: app/dist
           destination: dist          
 
   deploy:
