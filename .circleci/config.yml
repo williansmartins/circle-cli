@@ -31,6 +31,11 @@ jobs:
       - store_artifacts:
           path: /tmp/artifacts
 
+      - run:
+        name: Deploy Over SSH
+        command: |
+          scp /tmp/artifacts/artifact-2 $SSH_USER@$SSH_HOST:~/teste/
+
   deploy:
     machine:
       enabled: true
