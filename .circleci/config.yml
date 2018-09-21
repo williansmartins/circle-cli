@@ -27,14 +27,10 @@ jobs:
           name: LS 1
           command: ls -lia
 
-      - run:
-          name: CD app
-          command: cd app
-
       # Restore local dependencies from cache
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "package.json" }}
+          - v1-dependencies-{{ checksum "app/package.json" }}
           - v1-dependencies-
       # Install project dependencies
       - run:
@@ -42,9 +38,9 @@ jobs:
           command: npm install
       # Cache local dependencies if they don't exist
       - save_cache:
-          key: v1-dependencies-{{ checksum "package.json" }}
+          key: v1-dependencies-{{ checksum "app/package.json" }}
           paths:
-              - node_modules
+              - app/node_modules
 
       - run:
           name: build angular
