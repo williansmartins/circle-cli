@@ -39,7 +39,7 @@ jobs:
       - run:    
           name: yyy
           command: |
-            ls -lia 
+            ls -lia ../
 
       - persist_to_workspace:
           root: app/dist
