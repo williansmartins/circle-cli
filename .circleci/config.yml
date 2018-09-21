@@ -74,17 +74,17 @@ jobs:
       enabled: true
     steps:
       - run:
-          name: PWD
+          name: PWD 4
           command: |
             pwd            
       - run:
-          name: LS1
+          name: LS 4
           command: |
-            ls -lia /home/circleci
-      - run:
-          name: Deploy Over SSH
-          command: |
-            scp dist/* $SSH_USER@$SSH_HOST:~/dist
+            ls -lia /home/circleci/project
+      # - run:
+      #     name: Deploy Over SSH
+      #     command: |
+      #       scp dist/primeiro-projeto/* $SSH_USER@$SSH_HOST:~/dist
 
       # - run:
       #     name: Deploy Over SSH
