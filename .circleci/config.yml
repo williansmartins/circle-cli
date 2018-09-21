@@ -14,26 +14,44 @@ jobs:
       # documented at https://circleci.com/docs/2.0/circleci-images/
       # - image: circleci/mongo:3.4.4
 
-    working_directory: ~/repo
+    working_directory: ~/project
 
     steps:
       - checkout
 
-      # Log the current branch
+      - run:
+          name: LS 1
+          command: ls -lia
+
+      - run:
+          name: PWD 1
+          command: pwd
+
+      # Restore local dependencies from cache
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}
+          - v1-dependencies-
+      # Install project dependencies
       - run:
           name: Install local dependencies
           command: npm install
+      # Cache local dependencies if they don't exist
+      - save_cache:
+          key: v1-dependencies-{{ checksum "package.json" }}
+          paths:
+              - node_modules
 
       - run:
           name: build angular
           command: ng build
 
       - run:
-          name: LS
+          name: LS 2
           command: ls -lia
 
       - run:
-          name: PWD
+          name: PWD 2
           command: pwd
               
       - store_artifacts:
