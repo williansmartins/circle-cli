@@ -59,7 +59,7 @@ jobs:
 
       - run:
           name: LS 3
-          command: ls -lia
+          command: ls -lia app/
 
       - run:
           name: PWD 3
