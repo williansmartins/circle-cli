@@ -37,7 +37,7 @@ jobs:
       - run:
           name: Deploy Over SSH
           command: |
-            scp README.md $SSH_USER@$SSH_HOST:~/
+            ls -lia
 
 workflows:
   version: 2
