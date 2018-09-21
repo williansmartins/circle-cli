@@ -83,9 +83,9 @@ jobs:
           command: |
             pwd            
       - run:
-          name: LS 4
+          name: xxx
           command: |
-            ls -lia /home
+            echo $CIRCLE_ARTIFACTS
       - run:
           name: LS 4
           command: |
@@ -93,7 +93,7 @@ jobs:
       - run:
           name: LS 4
           command: |
-            ls -lia /home/ubuntu  
+            ls -lia /home/ubuntu
       # - run:
       #     name: Deploy Over SSH
       #     command: |
