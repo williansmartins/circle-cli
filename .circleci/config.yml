@@ -67,7 +67,12 @@ jobs:
               
       - store_artifacts:
           path: app/dist
-          destination: dist          
+          destination: dist    
+      # Cache the dist folder for the deploy job
+      - save_cache:
+          key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
+          paths:
+              - dist2       
 
   deploy:
     machine:
@@ -88,7 +93,7 @@ jobs:
       - run:
           name: LS 4
           command: |
-            ls -lia /home/circleci/project  
+            ls -lia /home/ubuntu  
       # - run:
       #     name: Deploy Over SSH
       #     command: |
