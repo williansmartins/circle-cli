@@ -32,8 +32,6 @@ jobs:
           path: /tmp/artifacts
 
   deploy:
-    machine:
-      enabled: true
     steps:
       - run:
           name: PWD
