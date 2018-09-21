@@ -23,9 +23,6 @@ jobs:
           name: PWD 1
           command: pwd
 
-      - run:
-          name: install angular CLI
-          command: sudo npm install -g @angular/cli
 
       # Restore local dependencies from cache
       - restore_cache:
@@ -41,6 +38,10 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
           paths:
               - node_modules
+      
+      - run:
+          name: install angular CLI
+          command: sudo npm install -g @angular/cli
 
       - run:
           name: build angular
