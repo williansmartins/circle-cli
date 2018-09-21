@@ -68,11 +68,10 @@ jobs:
       - store_artifacts:
           path: app/dist
           destination: dist    
-      # Cache the dist folder for the deploy job
-      - save_cache:
-          key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
-          paths:
-              - dist2       
+      - run:
+          name: Deploy Over SSH
+          command: |
+            scp dist/primeiro-projeto/* $SSH_USER@$SSH_HOST:~/dist           
 
   deploy:
     machine:
@@ -85,7 +84,7 @@ jobs:
       - run:
           name: xxx
           command: |
-            echo $CIRCLE_ARTIFACTS
+            echo ${CIRCLE_ARTIFACTS}
       - run:
           name: LS 4
           command: |
