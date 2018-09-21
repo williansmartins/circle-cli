@@ -35,17 +35,25 @@ jobs:
       enabled: true
     steps:
       - run:
-          name: LS -lia
-          command: |
-            ls -lia
-      - run:
           name: PWD
           command: |
             pwd            
       - run:
-          name: Deploy Over SSH
+          name: LS0
           command: |
-            scp /home/circleci/repo/README.md $SSH_USER@$SSH_HOST:~/
+            ls -lia /home
+      - run:
+          name: LS1
+          command: |
+            ls -lia /home/circleci
+      - run:
+          name: LS2
+          command: |
+            ls -lia /home/circleci/repo/
+      # - run:
+      #     name: Deploy Over SSH
+      #     command: |
+      #       scp /home/circleci/repo/README.md $SSH_USER@$SSH_HOST:~/
 
 workflows:
   version: 2
