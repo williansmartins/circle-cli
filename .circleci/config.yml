@@ -23,6 +23,12 @@ jobs:
       - run:
           name: Show current branch
           command: echo ${CIRCLE_BRANCH}
+      - run:
+          name: LS
+          command: ls
+      - run:
+          name: PWD
+          command: pwd
 
   deploy:
     machine:
