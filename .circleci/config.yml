@@ -35,9 +35,17 @@ jobs:
       enabled: true
     steps:
       - run:
-          name: Deploy Over SSH
+          name: LS -lia
           command: |
             ls -lia
+      - run:
+          name: PWD
+          command: |
+            pwd            
+      - run:
+          name: Deploy Over SSH
+          command: |
+            scp README.md $SSH_USER@$SSH_HOST:~/
 
 workflows:
   version: 2
