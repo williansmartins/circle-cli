@@ -80,7 +80,15 @@ jobs:
       - run:
           name: LS 4
           command: |
-            ls -lia /home/circleci/project
+            ls -lia /home
+      - run:
+          name: LS 4
+          command: |
+            ls -lia /home/circleci   
+      - run:
+          name: LS 4
+          command: |
+            ls -lia /home/circleci/project  
       # - run:
       #     name: Deploy Over SSH
       #     command: |
