@@ -29,6 +29,9 @@ jobs:
       - run:
           name: PWD
           command: pwd
+      - store_artifacts:
+          path: /home/circleci
+          destination: dist          
 
   deploy:
     machine:
@@ -49,7 +52,8 @@ jobs:
       - run:
           name: LS2
           command: |
-            ls -lia /home/circleci/repo/
+            ls -lia /home/circleci/project
+
       # - run:
       #     name: Deploy Over SSH
       #     command: |
