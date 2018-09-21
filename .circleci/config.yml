@@ -31,7 +31,7 @@ jobs:
       - run:
           name: Deploy Over SSH
           command: |
-            scp dist/ $SSH_USER@$SSH_HOST:~/pwms.com.br/apps/
+            scp dist/ $SSH_USER@$SSH_HOST:~/
 
 workflows:
   version: 2
