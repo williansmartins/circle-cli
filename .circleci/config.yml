@@ -24,8 +24,8 @@ jobs:
           command: pwd
 
       - run:
-          name: LS 1
-          command: ls -lia
+          name: install angular CLI
+          command: npm install -g @angular/cli
 
       # Restore local dependencies from cache
       - restore_cache:
