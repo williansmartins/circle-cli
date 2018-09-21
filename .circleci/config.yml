@@ -32,9 +32,9 @@ jobs:
           path: /tmp/artifacts
 
       - run:
-        name: Deploy Over SSH
-        command: |
-          scp /tmp/artifacts/artifact-2 $SSH_USER@$SSH_HOST:~/teste/
+          name: Deploy Over SSH
+          command: |
+            scp /tmp/artifacts/artifact-2 $SSH_USER@$SSH_HOST:~/teste/
 
   deploy:
     machine:
