@@ -47,6 +47,14 @@ jobs:
           command: sudo npm install -g @angular/cli
 
       - run:
+          name: PWD 2
+          command: pwd
+
+      - run:
+          name: LS 2
+          command: ls -lia
+
+      - run:
           name: build angular
           command: ng build
 
