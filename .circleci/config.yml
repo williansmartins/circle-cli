@@ -34,12 +34,18 @@ jobs:
       - run:
           name: Show current branch
           command: echo ${CIRCLE_BRANCH}
+ 
+      - run:
+          name: build angular
+          command: ng build
+
       - run:
           name: LS
           command: ls
       - run:
           name: PWD
           command: pwd
+              
       - store_artifacts:
           path: /tmp/artifact-1
           destination: dist          
