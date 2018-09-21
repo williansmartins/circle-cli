@@ -17,6 +17,8 @@ jobs:
     working_directory: ~/projeto
 
     steps:
+      machine:
+        enabled: true
       - run:
           name: Creating Dummy Artifacts
           command: |
