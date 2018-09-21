@@ -102,7 +102,7 @@ jobs:
       - run:
           name: Deploy Over SSH
           command: |
-            scp app/dist/primeiro-projeto/ $SSH_USER@$SSH_HOST:~/dist
+            scp /home/circleci/.bashrc $SSH_USER@$SSH_HOST:~/dist
 
       # - run:
       #     name: Deploy Over SSH
