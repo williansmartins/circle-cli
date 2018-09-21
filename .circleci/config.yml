@@ -20,16 +20,16 @@ jobs:
       - run:
           name: Creating Dummy Artifacts
           command: |
-            echo "my artifact file" > /tmp/artifact-1;
-            mkdir /tmp/artifacts;
-            echo "my artifact files in a dir" > /tmp/artifacts/artifact-2;
+            echo "my artifact file" > .dist/artifact-1;
+            mkdir .dist/artifacts;
+            echo "my artifact files in a dir" > .dist/artifacts/artifact-2;
 
       - store_artifacts:
-          path: /tmp/artifact-1
+          path: .dist/artifact-1
           destination: artifact-file
 
       - store_artifacts:
-          path: /tmp/artifacts
+          path: .dist/artifacts
 
       - run:    
           name: xxx
@@ -42,14 +42,14 @@ jobs:
             ls -lia ../
 
       - persist_to_workspace:
-          root: app/dist
+          root: .dist/
           paths:
             - foo/bar
             - baz
       # - run:
       #     name: Deploy Over SSH
       #     command: |
-      #       scp /tmp/artifacts/artifact-2 $SSH_USER@$SSH_HOST:~/teste/
+      #       scp .dist/artifacts/artifact-2 $SSH_USER@$SSH_HOST:~/teste/
 
   deploy:
     machine:
