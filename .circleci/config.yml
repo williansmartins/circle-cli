@@ -79,7 +79,7 @@ jobs:
       - run:
           name: LS4
           command: |
-            ls -lia /temp
+            ls -lia /tmp
       # - run:
       #     name: LS
       #     command: |
