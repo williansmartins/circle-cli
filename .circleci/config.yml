@@ -94,29 +94,29 @@ jobs:
       # - image: circleci/mongo:3.4.4
 
     working_directory: ~/projeto
-    
+
     steps:
       - run:
           name: PWD 4
           command: |
             pwd            
       - run:
-          name: xxx
-          command: |
-            echo ${CIRCLE_ARTIFACTS}
-      - run:
           name: LS 4
           command: |
-            ls -lia /home/circleci   
+            ls -lia /home/circleci/projeto   
       - run:
-          name: LS 4
+          name: LS 3
           command: |
-            ls -lia /home/ubuntu
+            ls -lia /
+      - run:
+          name: LS 2
+          command: |
+            ls -lia /home
 
-      - run:
-          name: Deploy Over SSH
-          command: |
-            scp app/dist/primeiro-projeto/ $SSH_USER@$SSH_HOST:~/dist
+      # - run:
+      #     name: Deploy Over SSH
+      #     command: |
+      #       scp app/dist/primeiro-projeto/ $SSH_USER@$SSH_HOST:~/dist
 
       # - run:
       #     name: Deploy Over SSH
