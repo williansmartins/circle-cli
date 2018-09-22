@@ -71,7 +71,11 @@ jobs:
       - run:
           name: LS4
           command: |
-            ls -lia /tmp/src/
+            ls -lia /tmp
+      - run:
+          name: LS4
+          command: |
+            ls -lia /tmp/app/
 
 workflows:
   version: 2
