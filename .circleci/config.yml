@@ -81,7 +81,7 @@ jobs:
       - run:
           name: LS4
           command: |
-            ls -lia /tmp/dist
+            ls -lia /tmp/app
 
       - run:
           name: Deploy Over SSH
