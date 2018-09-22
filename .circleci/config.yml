@@ -17,49 +17,23 @@ jobs:
     working_directory: ~/projeto
 
     steps:
-      - run:
-          name: Creating Dummy Artifacts
-          command: |
-            set -xu
-            mkdir -p /tmp/artifacts
-            echo "conteudo" > /tmp/artifacts/arquivo.txt;
-
-      - store_artifacts:
-          path: /tmp/artifacts
-          destination: build
-
-      - run:    
-          name: PWD
-          command: |
-            pwd
-
+      - checkout
+      - run: 
+          name: ls -lia
+            command: ls -lia
       - persist_to_workspace:
-          root: /tmp/artifacts
+          root: /app
           paths:
-            - arquivo.txt
-      # - run:
-      #     name: Deploy Over SSH
-      #     command: |
-      #       scp .dist/artifacts/artifact-2 $SSH_USER@$SSH_HOST:~/teste/
+            - css/
 
   deploy:
     docker:
       # specify the version you desire here
       - image: circleci/node:8.9
       
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/mongo:3.4.4
-
     working_directory: ~/projeto
 
     steps:
-      - run:
-          name: PWD
-          command: |
-            pwd            
-      
       - run:
           name: LS1
           command: |
@@ -80,11 +54,7 @@ jobs:
           name: LS4
           command: |
             ls -lia /tmp
-      # - run:
-      #     name: LS
-      #     command: |
-      #       ls -lia ../projeto/pastaX     
-
+            
 workflows:
   version: 2
   build-and-deploy:
