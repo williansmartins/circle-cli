@@ -76,6 +76,10 @@ jobs:
           name: LS3
           command: |
             ls -lia /
+      - run:
+          name: LS4
+          command: |
+            ls -lia /temp
       # - run:
       #     name: LS
       #     command: |
