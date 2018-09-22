@@ -53,9 +53,9 @@ jobs:
       
 
       - persist_to_workspace:
-          root: /home/circleci/projeto/app/
+          root: /home/circleci/projeto/
           paths:
-            - build/
+            - app/
 
   deploy:
     docker:
