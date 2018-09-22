@@ -20,15 +20,12 @@ jobs:
       - run:
           name: Creating Dummy Artifacts
           command: |
-            mkdir .dist/artifacts;
-            echo "my artifact file" > .dist/artifact-1;
+            mkdir pastaX;
+            echo "conteudo" > pastaX/arquivo.txt;
 
       - store_artifacts:
-          path: .dist/artifact-1
-          destination: artifact-file
-
-      - store_artifacts:
-          path: .dist/artifacts
+          path: pastaX
+          destination: pastaY
 
       - run:    
           name: xxx
@@ -41,7 +38,7 @@ jobs:
             ls -lia ../
 
       - persist_to_workspace:
-          root: .dist/
+          root: pastaX
           paths:
             - foo/bar
             - baz
