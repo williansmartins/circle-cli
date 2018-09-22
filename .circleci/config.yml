@@ -23,7 +23,7 @@ jobs:
           command: |
             ls -lia
       - persist_to_workspace:
-          root: /app
+          root: app/
           paths:
             - src/
 
