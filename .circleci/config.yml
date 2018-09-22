@@ -35,26 +35,13 @@ jobs:
     working_directory: ~/projeto
 
     steps:
-      - run:
-          name: LS1
-          command: |
-            ls -lia
-
       - attach_workspace:
           at: /tmp
 
       - run:
-          name: LS2
-          command: |
-            ls -lia 
-      - run:
-          name: LS3
-          command: |
-            ls -lia /
-      - run:
           name: LS4
           command: |
-            ls -lia /tmp
+            ls -lia /tmp/src/
 
 workflows:
   version: 2
