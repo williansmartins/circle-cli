@@ -40,9 +40,20 @@ jobs:
       - run:
           name: build angular
           command: cd app && ng build
+      
+      - run: 
+          name: pwd
+          command: |
+            pwd
+      
+      - run: 
+          name: ls -lia
+          command: |
+            ls -lia
+      
 
       - persist_to_workspace:
-          root: app/
+          root: /home/circleci/projeto/app/
           paths:
             - build/
 
