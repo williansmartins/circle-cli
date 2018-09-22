@@ -37,11 +37,9 @@ jobs:
           command: |
             ls -lia ../projeto/pastaX
 
-      # - persist_to_workspace:
-      #     root: pastaX
-      #     paths:
-      #       - foo/bar
-      #       - baz
+      - persist_to_workspace:
+          root: pastaX
+          
       # - run:
       #     name: Deploy Over SSH
       #     command: |
