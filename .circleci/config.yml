@@ -83,6 +83,10 @@ jobs:
           command: |
             ls -lia /tmp/app
 
+      - add_ssh_keys:
+          fingerprints:
+            -"21:26:79:4b:de:ef:cb:c1:e4:d3:0b:da:55:61:69:56"
+
       - run:
           name: Deploy Over SSH
           command: |
