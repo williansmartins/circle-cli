@@ -70,11 +70,7 @@ jobs:
           name: ls -lia /tmp
           command: |
             ls -lia /tmp
-      - run:
-          name: ls -lia /tmp/dist
-          command: |
-            ls -lia /tmp/dist
-
+      
       - attach_workspace:
           at: /tmp
 
