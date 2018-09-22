@@ -84,8 +84,17 @@ jobs:
       #       scp app/dist/primeiro-projeto $SSH_USER@$SSH_HOST:~/
 
   deploy:
-    machine:
-      enabled: true
+    docker:
+      # specify the version you desire here
+      - image: circleci/node:8.9
+      
+      # Specify service dependencies here if necessary
+      # CircleCI maintains a library of pre-built images
+      # documented at https://circleci.com/docs/2.0/circleci-images/
+      # - image: circleci/mongo:3.4.4
+
+    working_directory: ~/projeto
+    
     steps:
       - run:
           name: PWD 4
