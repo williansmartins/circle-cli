@@ -33,8 +33,6 @@ jobs:
           command: |
             pwd
 
-      - persist_to_workspace:
-          root: /tmp/artifacts
           
   deploy-stage:
     docker:
