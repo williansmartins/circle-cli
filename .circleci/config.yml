@@ -47,7 +47,7 @@ jobs:
       enabled: true
     steps:
       - attach_workspace:
-        at: /tmp/artifacts
+          at: /tmp/artifacts
 
       - run:
           name: PWD
