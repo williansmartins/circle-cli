@@ -14,123 +14,61 @@ jobs:
       # documented at https://circleci.com/docs/2.0/circleci-images/
       # - image: circleci/mongo:3.4.4
 
-    working_directory: ~/projeto
+    working_directory: ~/my-project
 
     steps:
-      - checkout
+      - run:
+          name: Creating Dummy Artifacts
+          command: |
+            set -xu
+            mkdir -p /tmp/artifacts
+            echo "conteudo" > /tmp/artifacts/arquivo.txt;
 
-      - run:
-          name: PWD 1
-          command: pwd
-
-      - run:
-          name: LS 1
-          command: ls -lia
-
-      # Restore local dependencies from cache
-      - restore_cache:
-          keys:
-          - v1-dependencies-{{ checksum "app/package.json" }}
-          - v1-dependencies-
-      # Install project dependencies
-      - run:
-          name: Install local dependencies
-          command: cd app && npm install
-      - run:
-          name: install angular CLI
-          command: sudo npm install -g @angular/cli
-
-      # Cache local dependencies if they don't exist
-      - save_cache:
-          key: v1-dependencies-{{ checksum "app/package.json" }}
-          paths:
-              - node_modules 
-      - run:
-          name: PWD 2
-          command: pwd
-
-      - run:
-          name: LS 2
-          command: ls -lia
-
-      - run:
-          name: build angular
-          command: cd app && ng build
-
-      - run:
-          name: LS 3
-          command: ls -lia
-
-      - run:
-          name: PWD 3
-          command: pwd
-              
       - store_artifacts:
-          path: app/dist
-          destination: dist   
+          path: /tmp/artifacts
+          destination: build
+
+      - run:    
+          name: PWD
+          command: |
+            pwd
 
       - persist_to_workspace:
-          root: app/
-          paths:
-            - dist/    
-
-      # - add_ssh_keys:
-      #   fingerprints:
-      #     -"21:26:79:4b:de:ef:cb:c1:e4:d3:0b:da:55:61:69:56"
-        
-      # - run:
-      #     name: Deploy Over SSH
-      #     command: |
-      #       scp app/dist/primeiro-projeto $SSH_USER@$SSH_HOST:~/
-
-  deploy:
+          root: /tmp/artifacts
+          
+  deploy-stage:
     docker:
-      # specify the version you desire here
       - image: circleci/node:8.9
-      
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/mongo:3.4.4
-
-    working_directory: ~/projeto
-
+    working_directory: /tmp/my-project  
     steps:
       - run:
-          name: PWD 4
-          command: |
-            pwd            
+          name: Deploy if tests pass and branch is Staging
+          command: ls -lia          
+          
+  deploy-prod:
+    docker:
+      - image: ubuntu:14.04
+    working_directory: /tmp/my-project  
+    steps:
       - run:
-          name: LS 4
-          command: |
-            ls -lia /home/circleci/projeto   
-      - run:
-          name: LS 3
-          command: |
-            ls -lia /
-      - run:
-          name: LS 2
-          command: |
-            ls -lia /home
+          name: Deploy if tests pass and branch is Master
+          command: ls  -lia
 
-      # - run:
-      #     name: Deploy Over SSH
-      #     command: |
-      #       scp app/dist/primeiro-projeto/ $SSH_USER@$SSH_HOST:~/dist
-
-      # - run:
-      #     name: Deploy Over SSH
-      #     command: |
-      #       scp /home/circleci/repo/README.md $SSH_USER@$SSH_HOST:~/
 
 workflows:
   version: 2
   build-and-deploy:
     jobs:
       - build
-      - deploy:
+      - deploy-stage:
           requires:
             - build
           filters:
             branches:
-              only: master            
+              only: staging
+      - deploy-prod:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master              
