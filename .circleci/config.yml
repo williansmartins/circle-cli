@@ -28,14 +28,14 @@ jobs:
           destination: pastaY
 
       - run:    
-          name: xxx
+          name: PWD
           command: |
             pwd
 
       - run:    
           name: yyy
           command: |
-            ls -lia ../
+            ls -lia ../projeto
 
       - persist_to_workspace:
           root: pastaX
