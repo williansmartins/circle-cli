@@ -35,7 +35,7 @@ jobs:
       - run:    
           name: yyy
           command: |
-            ls -lia ../projeto
+            ls -lia ../projeto/pastaX
 
       - persist_to_workspace:
           root: pastaX
