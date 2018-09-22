@@ -20,8 +20,8 @@ jobs:
       - checkout
       - run: 
           name: ls -lia
-            command: |
-              ls -lia
+          command: |
+            ls -lia
       - persist_to_workspace:
           root: /app
           paths:
