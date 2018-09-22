@@ -39,7 +39,8 @@ jobs:
 
       - persist_to_workspace:
           root: pastaX
-          
+          paths:
+            - arquivo.txt
       # - run:
       #     name: Deploy Over SSH
       #     command: |
