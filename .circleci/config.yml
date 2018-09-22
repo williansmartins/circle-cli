@@ -88,9 +88,9 @@ jobs:
             ls -lia /tmp/dist
 
       - run:
-        name: Deploy Over SSH
-        command: |
-          scp temp/dist/ $SSH_USER@$SSH_HOST:~/dist
+          name: Deploy Over SSH
+          command: |
+            scp temp/dist/ $SSH_USER@$SSH_HOST:~/dist
 
 
 workflows:
