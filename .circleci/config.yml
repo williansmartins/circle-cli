@@ -14,7 +14,7 @@ jobs:
       # documented at https://circleci.com/docs/2.0/circleci-images/
       # - image: circleci/mongo:3.4.4
 
-    working_directory: ~/my-project
+    working_directory: ~/projeto
 
     steps:
       - run:
@@ -33,40 +33,43 @@ jobs:
           command: |
             pwd
 
-          
-  deploy-stage:
-    docker:
-      - image: circleci/node:8.9
-    working_directory: /tmp/my-project  
-    steps:
-      - run:
-          name: Deploy if tests pass and branch is Staging
-          command: ls -lia          
-          
-  deploy-prod:
-    docker:
-      - image: ubuntu:14.04
-    working_directory: /tmp/my-project  
-    steps:
-      - run:
-          name: Deploy if tests pass and branch is Master
-          command: ls  -lia
+      - persist_to_workspace:
+          root: /tmp
+          paths:
+            - artifacts
+      # - run:
+      #     name: Deploy Over SSH
+      #     command: |
+      #       scp .dist/artifacts/artifact-2 $SSH_USER@$SSH_HOST:~/teste/
 
+  deploy:
+    machine:
+      enabled: true
+    steps:
+      - attach_workspace:
+        at: /tmp/artifacts
+
+      - run:
+          name: PWD
+          command: |
+            pwd            
+      - run:
+          name: LS
+          command: |
+            ls -lia /
+      # - run:
+      #     name: LS
+      #     command: |
+      #       ls -lia ../projeto/pastaX     
 
 workflows:
   version: 2
   build-and-deploy:
     jobs:
       - build
-      - deploy-stage:
+      - deploy:
           requires:
             - build
           filters:
             branches:
-              only: staging
-      - deploy-prod:
-          requires:
-            - build
-          filters:
-            branches:
-              only: master              
+              only: master            
