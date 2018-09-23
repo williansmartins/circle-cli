@@ -33,6 +33,10 @@ jobs:
     working_directory: ~/projeto
 
     steps:
+      - run:
+          name: ls -lia /
+          command: |
+            ls -lia /
 
       - run:
           name: ls -lia /tmp
