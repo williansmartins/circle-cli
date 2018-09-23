@@ -90,7 +90,7 @@ jobs:
       - run:
           name: Deploy Over SSH
           command: |
-            scp -o StrictHostKeyChecking=no temp/dist/ $SSH_USER@$SSH_HOST:~/dist
+            yes | scp temp/dist/ $SSH_USER@$SSH_HOST:~/dist
 
 
 workflows:
