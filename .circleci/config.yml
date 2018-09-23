@@ -90,6 +90,11 @@ jobs:
       - run:
           name: Deploy Over SSH
           command: |
+            ssh-keyscan $SSH_HOST >> ~/.ssh/config 
+
+      - run:
+          name: Deploy Over SSH
+          command: |
             yes | scp temp/dist/ $SSH_USER@$SSH_HOST:~/dist
 
 
