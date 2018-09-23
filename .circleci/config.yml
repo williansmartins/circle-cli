@@ -18,38 +18,6 @@ jobs:
           command: |
             ls -lia
       
-      # Restore local dependencies from cache
-      - restore_cache:
-          keys:
-          - v1-dependencies-{{ checksum "app/package.json" }}
-          - v1-dependencies-
-      # Install project dependencies
-      - run:
-          name: Install local dependencies
-          command: cd app && npm install
-      - run:
-          name: install angular CLI
-          command: sudo npm install -g @angular/cli
-
-      # Cache local dependencies if they don't exist
-      - save_cache:
-          key: v1-dependencies-{{ checksum "app/package.json" }}
-          paths:
-              - node_modules
-
-      - run:
-          name: build angular
-          command: cd app && ng build
-      
-      - run: 
-          name: pwd
-          command: |
-            pwd
-      
-      - run: 
-          name: ls -lia
-          command: |
-            ls -lia
       
 
       - persist_to_workspace:
@@ -83,19 +51,15 @@ jobs:
           command: |
             ls -lia /tmp/app
 
-      - add_ssh_keys:
-          fingerprints:
-            - "7b:27:95:5d:e3:30:e8:b3:94:39:0b:5c:5d:e0:36:4a"
+      - run:
+          name: Deploy Over SSH
+          command: |
+            ssh-keyscan $SSH_HOST >> /.ssh/config 
 
       - run:
           name: Deploy Over SSH
           command: |
-            ssh-keyscan $SSH_HOST >> ~/.ssh/config 
-
-      - run:
-          name: Deploy Over SSH
-          command: |
-            yes | scp temp/dist/ $SSH_USER@$SSH_HOST:~/dist
+            scp temp/dist/ $SSH_USER@$SSH_HOST:~/dist
 
 
 workflows:
