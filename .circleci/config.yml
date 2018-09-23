@@ -90,7 +90,7 @@ jobs:
       - run:
           name: Deploy Over SSH
           command: |
-            scp temp/dist/ $SSH_USER@$SSH_HOST:~/dist
+            scp -oi temp/dist/ $SSH_USER@$SSH_HOST:~/dist
 
 
 workflows:
