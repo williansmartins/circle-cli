@@ -41,33 +41,32 @@ jobs:
           command: |
             ls -lia /etc/ssh/ssh_config
 
-      - run:
-          name: ls -lia /tmp
-          command: |
-            ls -lia /tmp
+      # - run:
+      #     name: ls -lia /tmp
+      #     command: |
+      #       ls -lia /tmp
       
-      - attach_workspace:
-          at: /tmp
-
-      - run:
-          name: LS4
-          command: |
-            ls -lia /tmp
-      - run:
-          name: LS4
-          command: |
-            ls -lia /tmp/app
+      # - attach_workspace:
+      #     at: /tmp
 
       # - run:
-      #     name: Deploy Over SSH
+      #     name: LS4
       #     command: |
-      #       ssh-keyscan $SSH_HOST >> /etc/.ssh/config 
+      #       ls -lia /tmp
+      # - run:
+      #     name: LS4
+      #     command: |
+      #       ls -lia /tmp/app
 
       - run:
           name: Deploy Over SSH
           command: |
-            scp temp/dist/ $SSH_USER@$SSH_HOST:~/dist
+            ssh-keyscan pwms.com.br >> /etc/ssh/ssh_config
 
+      - run:
+          name: Deploy Over SSH
+          command: |
+            scp temp/dist/ waisoc@pwms.com.br:/
 
 workflows:
   version: 2
