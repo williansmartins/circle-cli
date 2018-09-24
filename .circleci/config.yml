@@ -18,6 +18,11 @@ jobs:
       #     command: |
       #       ls -lia
 
+      - run:
+          name: mkdir /teste
+          command: |
+            mkdir /teste
+
       # - persist_to_workspace:
       #     root: /home/circleci/projeto/
       #     paths:
@@ -31,10 +36,6 @@ jobs:
     working_directory: ~/projeto
 
     steps:
-      - run:
-          name: mkdir /teste
-          command: |
-            mkdir /teste
 
       # - run:
       #     name: ls -lia /etc/ssh/ssh_config
