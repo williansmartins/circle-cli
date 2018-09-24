@@ -13,15 +13,11 @@ jobs:
 
     steps:
       # - checkout
-      # - run: 
-      #     name: ls -lia
-      #     command: |
-      #       ls -lia
-
-      - run:
-          name: mkdir /teste
+      - run: 
+          name: ls -lia
           command: |
-            mkdir /teste
+            ls -lia
+
 
       # - persist_to_workspace:
       #     root: /home/circleci/projeto/
@@ -63,6 +59,11 @@ jobs:
       #     name: Deploy Over SSH
       #     command: |
       #       ssh-keyscan pwms.com.br >> /etc/ssh/ssh_config
+
+      - run:
+          name: mkdir teste
+          command: |
+            mkdir teste
 
       - run:
           name: Deploy Over SSH
