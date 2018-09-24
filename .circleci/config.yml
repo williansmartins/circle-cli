@@ -39,9 +39,9 @@ jobs:
             ls -lia /
 
       - run:
-          name: ls -lia /etc
+          name: ls -lia /etc/ssh
           command: |
-            ls -lia /etc
+            ls -lia /etc/ssh
 
       - run:
           name: ls -lia /tmp
