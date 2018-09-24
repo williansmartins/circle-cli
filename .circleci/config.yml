@@ -55,10 +55,10 @@ jobs:
       #     command: |
       #       ls -lia /tmp/app
 
-      # - run:
-      #     name: Deploy Over SSH
-      #     command: |
-      #       ssh-keyscan pwms.com.br >> /etc/ssh/ssh_config
+      - run:
+          name: Deploy Over SSH
+          command: |
+            sudo ssh-keyscan pwms.com.br >> /etc/ssh/ssh_config
 
       - run:
           name: mkdir teste
