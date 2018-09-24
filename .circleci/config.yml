@@ -37,6 +37,10 @@ jobs:
           name: ls -lia /
           command: |
             ls -lia /
+      - run:
+          name: ls -al ~/.ssh
+          command: |
+            ls -al ~/.ssh
 
       - run:
           name: ls -lia /tmp
@@ -58,7 +62,7 @@ jobs:
       - run:
           name: Deploy Over SSH
           command: |
-            ssh-keyscan $SSH_HOST >> /.ssh/config 
+            ssh-keyscan $SSH_HOST >> /etc/.ssh/config 
 
       - run:
           name: Deploy Over SSH
