@@ -37,10 +37,11 @@ jobs:
           name: ls -lia /
           command: |
             ls -lia /
+
       - run:
-          name: ls -al ~/.ssh
+          name: ls -lia /etc
           command: |
-            ls -al ~/.ssh
+            ls -lia /etc
 
       - run:
           name: ls -lia /tmp
