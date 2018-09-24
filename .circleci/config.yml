@@ -12,16 +12,16 @@ jobs:
     working_directory: ~/projeto
 
     steps:
-      - checkout
-      - run: 
-          name: ls -lia
-          command: |
-            ls -lia
+      # - checkout
+      # - run: 
+      #     name: ls -lia
+      #     command: |
+      #       ls -lia
 
-      - persist_to_workspace:
-          root: /home/circleci/projeto/
-          paths:
-            - app/
+      # - persist_to_workspace:
+      #     root: /home/circleci/projeto/
+      #     paths:
+      #       - app/
 
   deploy:
     docker:
@@ -32,14 +32,14 @@ jobs:
 
     steps:
       - run:
-          name: ls -lia /
+          name: mkdir /teste
           command: |
-            ls -lia /
+            mkdir /teste
 
-      - run:
-          name: ls -lia /etc/ssh/ssh_config
-          command: |
-            ls -lia /etc/ssh/ssh_config
+      # - run:
+      #     name: ls -lia /etc/ssh/ssh_config
+      #     command: |
+      #       ls -lia /etc/ssh/ssh_config
 
       # - run:
       #     name: ls -lia /tmp
@@ -58,15 +58,15 @@ jobs:
       #     command: |
       #       ls -lia /tmp/app
 
-      - run:
-          name: Deploy Over SSH
-          command: |
-            ssh-keyscan pwms.com.br >> /etc/ssh/ssh_config
+      # - run:
+      #     name: Deploy Over SSH
+      #     command: |
+      #       ssh-keyscan pwms.com.br >> /etc/ssh/ssh_config
 
       - run:
           name: Deploy Over SSH
           command: |
-            scp temp/dist/ waisoc@pwms.com.br:/
+            scp teste/ waisoc@pwms.com.br:/
 
 workflows:
   version: 2
