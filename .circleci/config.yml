@@ -17,8 +17,6 @@ jobs:
           name: ls -lia
           command: |
             ls -lia
-      
-      
 
       - persist_to_workspace:
           root: /home/circleci/projeto/
@@ -60,10 +58,10 @@ jobs:
           command: |
             ls -lia /tmp/app
 
-      - run:
-          name: Deploy Over SSH
-          command: |
-            ssh-keyscan $SSH_HOST >> /etc/.ssh/config 
+      # - run:
+      #     name: Deploy Over SSH
+      #     command: |
+      #       ssh-keyscan $SSH_HOST >> /etc/.ssh/config 
 
       - run:
           name: Deploy Over SSH
