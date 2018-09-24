@@ -39,9 +39,9 @@ jobs:
             ls -lia /
 
       - run:
-          name: ls -lia /etc/ssh
+          name: ls -lia /etc/ssh/ssh_config
           command: |
-            ls -lia /etc/ssh
+            ls -lia /etc/ssh/ssh_config
 
       - run:
           name: ls -lia /tmp
