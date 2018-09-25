@@ -16,7 +16,7 @@ jobs:
       - run: 
           name: teste
           command: |
-            ssh -v git@github.com
+            ssh-keygen -t rsa -N ""
 
 
       # - persist_to_workspace:
