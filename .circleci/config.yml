@@ -59,6 +59,16 @@ jobs:
 
       - attach_workspace:
           at: app/
+      
+      - run: 
+          name: ls
+          command: |
+            ls -lia
+
+      - run: 
+          name: ls
+          command: |
+            ls -lia app
 
       - run: 
           name: ls
