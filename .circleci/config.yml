@@ -92,7 +92,7 @@ jobs:
       - run:
           name: Deploy Over SSH
           command: |
-            scp teste.txt waisoc@pwms.com.br:\$HOME/teste/
+            scp teste.txt waisoc@pwms.com.br:\$HOME/pwms.com.br/apps/angular
 
 workflows:
   version: 2
