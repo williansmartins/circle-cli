@@ -43,7 +43,7 @@ jobs:
           command: cd app && ng build            
 
       - persist_to_workspace:
-          root: /home/circleci/projeto/
+          root: /home/circleci/projeto/app/dist/
           paths:
             - app/
 
@@ -62,7 +62,7 @@ jobs:
       - run: 
           name: ls
           command: |
-            ls -lia app/
+            ls -lia app/dist
 
       - run: 
           name: ssh-keygen 
@@ -78,15 +78,15 @@ jobs:
           name: ssh-keyscan
           command: ssh-keyscan -H pwms.com.br >> ~/.ssh/known_hosts   
 
-      - run:
-          name: touch teste.txt
-          command: |
-            touch teste.txt
+      # - run:
+      #     name: touch teste.txt
+      #     command: |
+      #       touch teste.txt
 
       - run:
           name: Deploy Over SSH
           command: |
-            scp app/dist/* waisoc@pwms.com.br:\$HOME/pwms.com.br/apps/angular/
+            scp app/dist/ waisoc@pwms.com.br:\$HOME/pwms.com.br/apps/angular/
 
 workflows:
   version: 2
