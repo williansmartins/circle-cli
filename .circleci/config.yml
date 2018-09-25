@@ -58,11 +58,11 @@ jobs:
 
       - attach_workspace:
           at: app/
-          
+
       - run: 
           name: ls
           command: |
-            ls -lia 
+            ls -lia app/
 
       - run: 
           name: ssh-keygen 
@@ -86,7 +86,7 @@ jobs:
       - run:
           name: Deploy Over SSH
           command: |
-            scp teste.txt waisoc@pwms.com.br:\$HOME/pwms.com.br/apps/angular/
+            scp app/dist/* waisoc@pwms.com.br:\$HOME/pwms.com.br/apps/angular/
 
 workflows:
   version: 2
