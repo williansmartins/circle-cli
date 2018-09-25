@@ -56,6 +56,9 @@ jobs:
 
     steps:
 
+      - attach_workspace:
+          at: app/
+          
       - run: 
           name: ls
           command: |
