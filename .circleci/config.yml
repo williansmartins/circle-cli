@@ -14,10 +14,6 @@ jobs:
     steps:
       - checkout
 
-      - run: 
-          name: ls
-          command: |
-            ls -lia 
 
       # Restore local dependencies from cache 
       - restore_cache:  
@@ -42,8 +38,13 @@ jobs:
           name: build angular 
           command: cd app && ng build            
 
+      - run: 
+          name: ls
+          command: |
+            ls -lia /home/circleci/projeto/app
+            
       - persist_to_workspace:
-          root: /home/circleci/projeto/app/dist/
+          root: /home/circleci/projeto/app
           paths:
             - app/
 
