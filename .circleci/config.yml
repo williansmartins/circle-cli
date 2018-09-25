@@ -87,7 +87,7 @@ jobs:
       - run:
           name: Deploy Over SSH
           command: |
-            scp -r tmp/app/dist/ waisoc@pwms.com.br:\$HOME/pwms.com.br/apps/angular/
+            scp -r tmp/app/dist/ $SSH_USER@$SSH_HOST:\$HOME/pwms.com.br/apps/angular/
 
 workflows:
   version: 2
