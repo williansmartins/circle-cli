@@ -80,24 +80,14 @@ jobs:
           command: |
             ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa
 
-      # - run: 
-      #     name: cat ~/.ssh/id_rsa.pub
-      #     command: |
-      #       cat ~/.ssh/id_rsa.pub
-
       - run:
           name: ssh-keyscan
           command: ssh-keyscan -H pwms.com.br >> ~/.ssh/known_hosts   
 
-      # - run:
-      #     name: touch teste.txt
-      #     command: |
-      #       touch teste.txt
-
       - run:
           name: Deploy Over SSH
           command: |
-            scp tmp/app/dist/ waisoc@pwms.com.br:\$HOME/pwms.com.br/apps/angular/
+            scp -r tmp/app/dist/ waisoc@pwms.com.br:\$HOME/pwms.com.br/apps/angular/
 
 workflows:
   version: 2
