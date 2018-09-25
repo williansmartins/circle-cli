@@ -48,10 +48,10 @@ jobs:
 
     steps:
 
-      # - run: 
-      #     name: ssh-keygen 
-      #     command: |
-      #       ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa
+      - run: 
+          name: ssh-keygen 
+          command: |
+            ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa
 
       # - run: 
       #     name: cat ~/.ssh/id_rsa.pub
