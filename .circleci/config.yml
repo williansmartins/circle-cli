@@ -92,7 +92,7 @@ jobs:
       - run:
           name: Deploy Over SSH
           command: |
-            scp teste.txt waisoc@pwms.com.br:/teste/
+            scp teste.txt waisoc@pwms.com.br:/teste/teste.txt
 
 workflows:
   version: 2
