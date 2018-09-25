@@ -42,9 +42,9 @@ jobs:
           name: ls
           command: |
             ls -lia /home/circleci/projeto/app
-            
+
       - persist_to_workspace:
-          root: /home/circleci/projeto/app
+          root: /home/circleci/projeto
           paths:
             - app/
 
