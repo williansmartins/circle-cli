@@ -24,6 +24,7 @@ jobs:
           keys: 
           - v1-dependencies-{{ checksum "app/package.json" }} 
           - v1-dependencies-  
+
       # Install project dependencies  
       - run:  
           name: Install local dependencies  
@@ -31,12 +32,13 @@ jobs:
       - run:  
           name: install angular CLI 
           command: sudo npm install -g @angular/cli 
+
        # Cache local dependencies if they don't exist 
       - save_cache: 
           key: v1-dependencies-{{ checksum "app/package.json" }}  
           paths:  
               - node_modules  
-       - run: 
+      - run: 
           name: build angular 
           command: cd app && ng build            
 
