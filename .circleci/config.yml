@@ -58,9 +58,9 @@ jobs:
       #     command: |
       #       cat ~/.ssh/id_rsa.pub
 
-      # - run:
-      #     name: ssh-keyscan
-      #     command: ssh-keyscan -H pwms.com.br >> ~/.ssh/known_hosts    
+      - run:
+          name: ssh-keyscan
+          command: ssh-keyscan -H pwms.com.br >> ~/.ssh/known_hosts    
 
 
       # - run:
@@ -85,10 +85,6 @@ jobs:
       #     command: |
       #       ls -lia /tmp/app
 
-      - run:
-          name: Deploy Over SSH
-          command: |
-            sudo ssh-keyscan pwms.com.br >> /etc/ssh/ssh_config
 
       - run:
           name: touch teste.txt
