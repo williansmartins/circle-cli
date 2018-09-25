@@ -58,7 +58,7 @@ jobs:
     steps:
 
       - attach_workspace:
-          at: app/
+          at: tmp/
       
       - run: 
           name: ls
@@ -68,12 +68,12 @@ jobs:
       - run: 
           name: ls
           command: |
-            ls -lia app
+            ls -lia tmp
 
-      # - run: 
-      #     name: ls
-      #     command: |
-      #       ls -lia app/dist
+      - run: 
+          name: ls
+          command: |
+            ls -lia tmp/app/dist
 
       - run: 
           name: ssh-keygen 
@@ -97,7 +97,7 @@ jobs:
       - run:
           name: Deploy Over SSH
           command: |
-            scp app/dist/ waisoc@pwms.com.br:\$HOME/pwms.com.br/apps/angular/
+            scp tmp/app/dist/ waisoc@pwms.com.br:\$HOME/pwms.com.br/apps/angular/
 
 workflows:
   version: 2
