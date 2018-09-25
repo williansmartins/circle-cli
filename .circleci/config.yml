@@ -23,9 +23,9 @@ jobs:
           command: |
             cat ~/.ssh/id_rsa.pub
 
-      - run:
-          name: pwms.com.br
-          command: ssh-keyscan -H pwms.com.br >> ~/.ssh/known_hosts            
+      # - run:
+      #     name: pwms.com.br
+      #     command: ssh-keyscan -H pwms.com.br >> ~/.ssh/known_hosts            
 
 
       # - persist_to_workspace:
@@ -42,6 +42,21 @@ jobs:
 
     steps:
 
+      - run: 
+          name: ssh-keygen 
+          command: |
+            ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa
+
+      - run: 
+          name: cat ~/.ssh/id_rsa.pub
+          command: |
+            cat ~/.ssh/id_rsa.pub
+
+      - run:
+          name: ssh-keyscan
+          command: ssh-keyscan -H pwms.com.br >> ~/.ssh/known_hosts    
+
+          
       # - run:
       #     name: ls -lia /etc/ssh/ssh_config
       #     command: |
