@@ -12,16 +12,22 @@ jobs:
     working_directory: ~/projeto
 
     steps:
-      # - checkout
-      - run: 
-          name: teste
-          command: |
-            ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa
+      - checkout
 
       - run: 
-          name: cat
+          name: ls
           command: |
-            cat ~/.ssh/id_rsa.pub
+            ls -lia
+
+      # - run: 
+      #     name: teste
+      #     command: |
+      #       ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa
+
+      # - run: 
+      #     name: cat
+      #     command: |
+      #       cat ~/.ssh/id_rsa.pub
 
       # - run:
       #     name: pwms.com.br
@@ -42,19 +48,19 @@ jobs:
 
     steps:
 
-      - run: 
-          name: ssh-keygen 
-          command: |
-            ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa
+      # - run: 
+      #     name: ssh-keygen 
+      #     command: |
+      #       ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa
 
-      - run: 
-          name: cat ~/.ssh/id_rsa.pub
-          command: |
-            cat ~/.ssh/id_rsa.pub
+      # - run: 
+      #     name: cat ~/.ssh/id_rsa.pub
+      #     command: |
+      #       cat ~/.ssh/id_rsa.pub
 
-      - run:
-          name: ssh-keyscan
-          command: ssh-keyscan -H pwms.com.br >> ~/.ssh/known_hosts    
+      # - run:
+      #     name: ssh-keyscan
+      #     command: ssh-keyscan -H pwms.com.br >> ~/.ssh/known_hosts    
 
 
       # - run:
@@ -85,7 +91,7 @@ jobs:
       #       sudo ssh-keyscan pwms.com.br >> /etc/ssh/ssh_config
 
       - run:
-          name: mkdir teste
+          name: touch teste.txt
           command: |
             touch teste.txt
 
