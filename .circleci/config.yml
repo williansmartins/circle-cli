@@ -17,27 +17,12 @@ jobs:
       - run: 
           name: ls
           command: |
-            ls -lia
+            ls -lia 
 
-      # - run: 
-      #     name: teste
-      #     command: |
-      #       ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa
-
-      # - run: 
-      #     name: cat
-      #     command: |
-      #       cat ~/.ssh/id_rsa.pub
-
-      # - run:
-      #     name: pwms.com.br
-      #     command: ssh-keyscan -H pwms.com.br >> ~/.ssh/known_hosts            
-
-
-      # - persist_to_workspace:
-      #     root: /home/circleci/projeto/
-      #     paths:
-      #       - app/
+      - persist_to_workspace:
+          root: /home/circleci/projeto/
+          paths:
+            - app/
 
   deploy:
     docker:
@@ -47,6 +32,11 @@ jobs:
     working_directory: ~/projeto
 
     steps:
+
+      - run: 
+          name: ls
+          command: |
+            ls -lia 
 
       - run: 
           name: ssh-keygen 
@@ -60,31 +50,7 @@ jobs:
 
       - run:
           name: ssh-keyscan
-          command: ssh-keyscan -H pwms.com.br >> ~/.ssh/known_hosts    
-
-
-      # - run:
-      #     name: ls -lia /etc/ssh/ssh_config
-      #     command: |
-      #       ls -lia /etc/ssh/ssh_config
-
-      # - run:
-      #     name: ls -lia /tmp
-      #     command: |
-      #       ls -lia /tmp
-      
-      # - attach_workspace:
-      #     at: /tmp
-
-      # - run:
-      #     name: LS4
-      #     command: |
-      #       ls -lia /tmp
-      # - run:
-      #     name: LS4
-      #     command: |
-      #       ls -lia /tmp/app
-
+          command: ssh-keyscan -H pwms.com.br >> ~/.ssh/known_hosts   
 
       - run:
           name: touch teste.txt
@@ -94,7 +60,7 @@ jobs:
       - run:
           name: Deploy Over SSH
           command: |
-            scp teste.txt waisoc@pwms.com.br:\$HOME/pwms.com.br/apps/angular
+            scp teste.txt waisoc@pwms.com.br:\$HOME/pwms.com.br/apps/angular/
 
 workflows:
   version: 2
