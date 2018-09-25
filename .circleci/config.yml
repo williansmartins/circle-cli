@@ -16,7 +16,7 @@ jobs:
       - run: 
           name: teste
           command: |
-            ssh-keygen -t rsa -N ""
+            ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa
 
 
       # - persist_to_workspace:
