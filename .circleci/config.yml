@@ -56,7 +56,7 @@ jobs:
           name: ssh-keyscan
           command: ssh-keyscan -H pwms.com.br >> ~/.ssh/known_hosts    
 
-          
+
       # - run:
       #     name: ls -lia /etc/ssh/ssh_config
       #     command: |
@@ -87,12 +87,12 @@ jobs:
       - run:
           name: mkdir teste
           command: |
-            mkdir teste
+            touch teste.txt
 
       - run:
           name: Deploy Over SSH
           command: |
-            scp teste/ waisoc@pwms.com.br:/
+            scp teste.txt waisoc@pwms.com.br:/
 
 workflows:
   version: 2
